@@ -76,5 +76,44 @@ void deleteStudent()
 // Function to update student information
 void updateStudent()
 {
-    //modify student info
+    int temp;
+    printf("Enter first name of student\n");
+    scanf("%d", &temp);
+    for (int j = 0; j < i; j++)
+    {
+        if (temp == st[j].firstName)
+        {
+         printf("1. First Name\n"
+                "2. Last Name\n"
+                "3. Address\n"
+                "4. Date of birth\n"
+                "5. Mobile number\n");
+         int c;
+         scanf("%d", &c);
+         switch(c) {
+            case 1:
+               printf("Enter the updated first name : ");
+               scanf("%s", st[j].firstName);
+               break;
+            case 2:
+               printf("Enter the updated last name : ");
+               scanf("%s", st[j].lastName);
+               break;
+            case 3:
+               printf("Enter the updated Address : ");
+               scanf("%d", st[i].address);
+               break;
+            case 4:
+               printf("Enter the updated Date of birth : ");
+               scanf("%f", st[i].dob);
+               break;
+            case 5:
+               printf("Enter the updated Mobile number: ");
+               scanf("%d", st[i].mobile);
+               break;
+            }
+            printf("Records updated successfully");
+        }
+
+    }
 }
