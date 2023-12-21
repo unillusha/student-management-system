@@ -18,3 +18,22 @@
 	<stdlib.h>
 	<string.h>
 
+1702587795 source:/home/nillusha/Documents/GitHub/student-management-system/studentsystem/main.c
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"myfunctions.h"
+
+1702590011 /home/nillusha/Documents/GitHub/student-management-system/studentsystem/myfunctions.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1702594686 source:/home/nillusha/Documents/GitHub/student-management-system/studentsystem/myfunctions.c
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"myfunctions.h"
+

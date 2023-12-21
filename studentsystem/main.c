@@ -28,16 +28,16 @@ int main() {
                 add_student();
                 break;
             case 2:
-                //findByFirstName();
+                findByFirstName();
                 break;
             case 3:
-                //totalCount();
+                totalCount();
                 break;
             case 4:
-                //deleteStudent();
+                deleteStudent();
                 break;
             case 5:
-                //updateStudent();
+                updateStudent();
                 break;
             case 6:
                 exit(0);

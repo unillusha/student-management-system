@@ -11,12 +11,12 @@ struct studentInfo
     char firstName[20];
     char lastName[20];
     char address[20];
-    int dob[8];
-    int mobile[10];
+    char dob[20];
+    char mobile[20];
 };
 
 // Declare function prototypes
-extern int i;  // Declare i as extern to avoid multiple definitions
+extern int count;  // Declare i as extern to avoid multiple definitions
 
 void add_student();
 void findByFirstName();

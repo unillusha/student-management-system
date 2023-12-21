@@ -4,7 +4,7 @@
 #include <string.h>
 #include "myfunctions.h"
 
-int i = 0;  // To keep track of number of students
+int count = 0;  // To keep track of number of students
 struct  studentInfo st[500];
 
 // Function to add student info
@@ -12,17 +12,17 @@ void add_student()
 {
     printf("Add the Student's Details\n\n");
     printf("Enter the first name of the student\n");
-    scanf("%s", st[i].firstName);
+    scanf("%s", st[count].firstName);
     printf("Enter the last name of the student\n");
-    scanf("%s", st[i].lastName);
+    scanf("%s", st[count].lastName);
     printf("Enter the address of the student\n");
-    scanf("%s", st[i].address);
+    scanf("%s", st[count].address);
     printf("Enter the date of birth (dd/mm/yyyy) of the student\n");
-    scanf("%d", st[i].dob);
+    scanf("%s", st[count].dob);
     printf("Enter the mobile number of the student\n");
-    scanf("%d", st[i].mobile);
+    scanf("%s", st[count].mobile);
 
-    i = i + 1;
+    count = count + 1;
 }
 // Function to find students by their first name
 void findByFirstName()
@@ -32,16 +32,16 @@ void findByFirstName()
     scanf("%s", temp);
     int c = 0;
 
-    for (int j = 1; j <= i; j++)
+    for (int j = 0; j < count; j++)
     {
         if (!strcmp(st[j].firstName, temp))
         {
             printf("Student information: \n");
-            printf("First name: %s\n", st[i].firstName);
-            printf("Last name: %s\n", st[i].lastName);
-            printf("Address: %s\n", st[i].address);
-            printf("Date of birth: %s\n", st[i].dob);
-            printf("Mobile number: %s\n", st[i].mobile);
+            printf("First name: %s\n", st[j].firstName);
+            printf("Last name: %s\n", st[j].lastName);
+            printf("Address: %s\n", st[j].address);
+            printf("Date of birth: %s\n", st[j].dob);
+            printf("Mobile number: %s\n", st[j].mobile);
         }
     }
 }
@@ -49,17 +49,17 @@ void findByFirstName()
 // Function to print the total number of students
 void totalCount()
 {
-   printf("The total number of students: %d\n", i);
+   printf("The total number of students: %d\n", count);
 }
 
 // Function to delete a Student
 void deleteStudent()
 {
     char temp[20];
-    printf("Enter name of student you want to delet from the system: \n");
+    printf("Enter name of student you want to delete from the system: \n");
     scanf("%s", temp);
 
-    for (int j = 1; j <= i; j++)
+    for (int j = 0; j < count; j++)
     {
       if (temp == st[j].firstName)
       {
@@ -67,19 +67,20 @@ void deleteStudent()
          {
             st[k] = st[k + 1];
          }
-         i--;
+         count--;
       }
 
     }
     printf("The student is removed from the system\n");
 }
+
 // Function to update student information
 void updateStudent()
 {
     int temp;
     printf("Enter first name of student\n");
-    scanf("%d", &temp);
-    for (int j = 0; j < i; j++)
+    scanf("%s", &temp);
+    for (int j = 0; j < count; j++)
     {
         if (temp == st[j].firstName)
         {
@@ -101,15 +102,15 @@ void updateStudent()
                break;
             case 3:
                printf("Enter the updated Address : ");
-               scanf("%d", st[i].address);
+               scanf("%s", st[j].address);
                break;
             case 4:
                printf("Enter the updated Date of birth : ");
-               scanf("%f", st[i].dob);
+               scanf("%s", st[j].dob);
                break;
             case 5:
                printf("Enter the updated Mobile number: ");
-               scanf("%d", st[i].mobile);
+               scanf("%s", st[j].mobile);
                break;
             }
             printf("Records updated successfully");
