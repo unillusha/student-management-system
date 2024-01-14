@@ -25,11 +25,43 @@ void add_student()
     count = count + 1;
 }
 // Function to find students by their first name
-void findByFirstName()
+void findByFirstName(const char* fileName)
 {
     char temp[20];
     printf("Enter first name of the student\n");
     scanf("%s", temp);
+
+    FILE* file = fopen(fileName, "r");
+    if (file == NULL)
+        {
+            printf("Error opening file.\n");
+            return;
+        }
+
+    struct studentInfo student;
+
+    // Read the file line by line
+    while (fscanf(file, "%s %s %s %s %s", student.firstName, student.lastName, student.address, student.dob, student.mobile) == 5)
+        {
+        // Compare the first name
+        if (strcmp(student.firstName, temp) == 0)
+            {
+                // Print the details of the student
+                printf("Student information: \n");
+                printf("First name: %s\n", student.firstName);
+                printf("Last name: %s\n", student.lastName);
+                printf("Address: %s\n", student.address);
+                printf("Date of birth: %s\n", student.dob);
+                printf("Mobile number: %s\n", student.mobile);
+
+                fclose(file);
+                return;
+            }
+        }
+    printf("No student found with the given first name.\n");
+    fclose(file);
+
+    /*
     int c = 0;
 
     for (int j = 0; j < count; j++)
@@ -44,6 +76,7 @@ void findByFirstName()
             printf("Mobile number: %s\n", st[j].mobile);
         }
     }
+    */
 }
 
 // Function to print the total number of students

@@ -28,7 +28,7 @@ int main() {
                 add_student();
                 break;
             case 2:
-                findByFirstName();
+                findByFirstName("/home/nillusha/Documents/GitHub/student-management-system/studentdb.txt");
                 break;
             case 3:
                 totalCount();
