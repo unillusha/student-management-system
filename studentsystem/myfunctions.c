@@ -61,22 +61,6 @@ void findByFirstName(const char* fileName)
     printf("No student found with the given first name.\n");
     fclose(file);
 
-    /*
-    int c = 0;
-
-    for (int j = 0; j < count; j++)
-    {
-        if (!strcmp(st[j].firstName, temp))
-        {
-            printf("Student information: \n");
-            printf("First name: %s\n", st[j].firstName);
-            printf("Last name: %s\n", st[j].lastName);
-            printf("Address: %s\n", st[j].address);
-            printf("Date of birth: %s\n", st[j].dob);
-            printf("Mobile number: %s\n", st[j].mobile);
-        }
-    }
-    */
 }
 
 // Function to print the total number of students
