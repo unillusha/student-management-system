@@ -8,8 +8,16 @@ int count = 0;  // To keep track of number of students
 struct  studentInfo st[500];
 
 // Function to add student info
-void add_student()
+void add_student(const char* fileName)
 {
+    FILE* file = fopen(fileName, "a"); // Open the file in append mode
+
+    if (file == NULL)
+    {
+        printf("Error opening file.\n");
+        return;
+    }
+
     printf("Add the Student's Details\n\n");
     printf("Enter the first name of the student\n");
     scanf("%s", st[count].firstName);
@@ -22,7 +30,12 @@ void add_student()
     printf("Enter the mobile number of the student\n");
     scanf("%s", st[count].mobile);
 
+    // Write the new student information to the file
+    fprintf(file, "%s %s %s %s %s\n", st[count].firstName, st[count].lastName, st[count].address, st[count].dob, st[count].mobile);
+
     count = count + 1;
+
+    fclose(file); // Close the file
 }
 // Function to find students by their first name
 void findByFirstName(const char* fileName)

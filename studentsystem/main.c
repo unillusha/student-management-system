@@ -25,7 +25,7 @@ int main() {
         switch (performTask)
         {
             case 1:
-                add_student();
+                add_student("/home/nillusha/Documents/GitHub/student-management-system/studentdb.txt");
                 break;
             case 2:
                 findByFirstName("/home/nillusha/Documents/GitHub/student-management-system/studentdb.txt");
