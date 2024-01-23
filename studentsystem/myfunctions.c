@@ -4,8 +4,83 @@
 #include <string.h>
 #include "myfunctions.h"
 
-int count = 0;  // To keep track of number of students
+int count = 0;
 struct  studentInfo st[500];
+int studentCount = 0;  // To keep track of number of students
+
+// Function to read file
+int read_StudentDB (const char* fileName)
+{
+    char buff[128];
+
+    FILE* file = fopen(fileName, "r");
+    if (file == NULL)
+    {
+        printf("Error opening file.\n");
+        return;
+    }
+
+    int i = 0;
+    int j = 0;
+
+    while(fgets(buff, 128, file))
+    {
+
+        // First name
+        if (i == 0){
+            strcpy(st[j].firstName, buff);
+        }
+
+        // Last name
+        if (i == 1){
+            strcpy(st[j].lastName, buff);
+        }
+
+        // Address
+        if (i == 2){
+            strcpy(st[j].address, buff);
+        }
+
+        // dob
+        if (i == 3){
+            strcpy(st[j].dob, buff);
+        }
+
+        // mobile
+        if (i == 4){
+            strcpy(st[j].mobile, buff);
+        }
+
+        i++;
+
+
+        if (i%6 == 0){
+            i = 0;
+            j++;
+
+        }
+    }
+
+    printf("total number of student = %d\n",j);
+    studentCount = j;
+    fclose(file);
+
+
+}
+
+void print_st(int max)
+{
+    int i;
+    for(i = 0; i < max; i++)
+    {
+        printf("%s",st[i].firstName);
+        printf("%s",st[i].lastName);
+        printf("%s",st[i].address);
+        printf("%s",st[i].dob);
+        printf("%s",st[i].mobile);
+        printf("\n");
+    }
+}
 
 // Function to add student info
 void add_student(const char* fileName)
@@ -31,7 +106,7 @@ void add_student(const char* fileName)
     scanf("%s", st[count].mobile);
 
     // Write the new student information to the file
-    fprintf(file, "%s %s %s %s %s\n", st[count].firstName, st[count].lastName, st[count].address, st[count].dob, st[count].mobile);
+    fprintf(file, "%s\n%s\n%s\n%s\n%s\n\n", st[count].firstName, st[count].lastName, st[count].address, st[count].dob, st[count].mobile);
 
     count = count + 1;
 
@@ -83,25 +158,46 @@ void totalCount()
 }
 
 // Function to delete a Student
-void deleteStudent()
+void deleteStudent(const char* fileName)
 {
     char temp[20];
     printf("Enter name of student you want to delete from the system: \n");
     scanf("%s", temp);
 
-    for (int j = 0; j < count; j++)
+    FILE* file = fopen(fileName, "r+");
+    if (file == NULL)
     {
-      if (temp == st[j].firstName)
-      {
-         for (int k = j; k < 499; k++)
-         {
-            st[k] = st[k + 1];
-         }
-         count--;
-      }
-
+        printf("Error opening file.\n");
+        return;
     }
+
+    struct studentInfo student;
+
+    // Read the file line by line
+    while (fscanf(file, "%s %s %s %s %s", student.firstName, student.lastName, student.address, student.dob, student.mobile) == 5)
+        {
+        // Compare the first name
+        if (strcmp(student.firstName, temp) == 0)
+            {
+                for (int j = 0; j < count; j++)
+                    {
+                        if (temp == st[j].firstName)
+                            {
+                            for (int k = j; k < 499; k++)
+                                {
+                                    st[k] = st[k + 1];
+                                }
+                                count--;
+                            }
+
+                    }
+
+                fclose(file);
+                return;
+            }
+        }
     printf("The student is removed from the system\n");
+    fclose(file);
 }
 
 // Function to update student information

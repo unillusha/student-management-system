@@ -6,11 +6,14 @@
 
 
 #include "myfunctions.h"
-
-//int i = 0;
+extern int studentCount;
 
 int main() {
     int performTask;
+    read_StudentDB("/home/nillusha/Documents/GitHub/student-management-system/studentdb.txt");
+    print_st(studentCount);
+    return 0;
+
     while(1)
     {
         printf("Enter the task that you want to perform\n");
@@ -34,7 +37,7 @@ int main() {
                 totalCount();
                 break;
             case 4:
-                deleteStudent();
+                deleteStudent("/home/nillusha/Documents/GitHub/student-management-system/studentdb.txt");
                 break;
             case 5:
                 updateStudent();
