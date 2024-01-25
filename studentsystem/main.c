@@ -3,9 +3,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-
 #include "myfunctions.h"
+
+#define DBFILE ("/home/nillusha/Documents/GitHub/student-management-system/studentdb.txt")
+
 // global variables
 extern int studentCount;
 extern struct  studentInfo st[500];
@@ -32,16 +33,16 @@ int main() {
         switch (performTask)
         {
             case 1:
-                add_student("/home/nillusha/Documents/GitHub/student-management-system/studentdb.txt");
+                add_student(DBFILE);
                 break;
             case 2:
-                findByFirstName("/home/nillusha/Documents/GitHub/student-management-system/studentdb.txt");
+                findByFirstName(DBFILE);
                 break;
             case 3:
                 totalCount();
                 break;
             case 4:
-                deleteStudent("/home/nillusha/Documents/GitHub/student-management-system/studentdb.txt");
+                deleteStudent(DBFILE);
                 break;
             case 5:
                 updateStudent();
