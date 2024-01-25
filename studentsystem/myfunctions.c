@@ -4,6 +4,9 @@
 #include <string.h>
 #include "myfunctions.h"
 
+#define MAX_NAME_SIZE (20)
+#define MAX_BUFF_SIZE (128)
+
 int count = 0;
 struct  studentInfo st[500];
 int studentCount = 0;  // To keep track of number of students
@@ -11,7 +14,7 @@ int studentCount = 0;  // To keep track of number of students
 // Function to read file
 int read_StudentDB (const char* fileName)
 {
-    char buff[128];
+    char buff[MAX_BUFF_SIZE];
 
     FILE* file = fopen(fileName, "r");
     if (file == NULL)
@@ -23,7 +26,7 @@ int read_StudentDB (const char* fileName)
     int i = 0;
     int j = 0;
 
-    while(fgets(buff, 128, file))
+    while(fgets(buff, MAX_BUFF_SIZE, file))
     {
 
         // First name
@@ -73,7 +76,7 @@ int read_StudentDB (const char* fileName)
 // Function to write to file
 int write_StudentDB (const char* fileName)
 {
-    char buff[128];
+    char buff[MAX_BUFF_SIZE];
 
     FILE* file = fopen(fileName, "w");
     if (file == NULL)
@@ -148,7 +151,7 @@ void add_student(const char* fileName)
 // Function to find students by their first name
 void findByFirstName(const char* fileName)
 {
-    char temp[20];
+    char temp[MAX_NAME_SIZE];
     printf("Enter first name of the student\n");
     scanf("%s", temp);
 
@@ -198,8 +201,8 @@ void deleteStudent(const char* fileName)
     read_StudentDB(fileName);
     print_st(studentCount);
 
-    char temp[20];
-    char buff[20];
+    char temp[MAX_NAME_SIZE];
+    char buff[MAX_NAME_SIZE];
     printf("Enter first name of student you would like to delete form the system: \n");
     scanf("%s", temp);
 
