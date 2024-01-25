@@ -6,13 +6,17 @@
 
 
 #include "myfunctions.h"
+// global variables
 extern int studentCount;
+extern struct  studentInfo st[500];
 
 int main() {
     int performTask;
-    read_StudentDB("/home/nillusha/Documents/GitHub/student-management-system/studentdb.txt");
-    print_st(studentCount);
-    return 0;
+    //read_StudentDB("/home/nillusha/Documents/GitHub/student-management-system/studentdb.txt");
+    //print_st(studentCount);
+    //st[1].flag = 0;
+    //write_StudentDB ("/home/nillusha/Documents/GitHub/student-management-system/studentdb1.txt");
+    //return 0;
 
     while(1)
     {

@@ -13,15 +13,19 @@ struct studentInfo
     char address[20];
     char dob[20];
     char mobile[20];
+    int flag;
 };
 
 // Declare function prototypes
 extern int count;  // Declare i as extern to avoid multiple definitions
 
-void add_student();
-void findByFirstName();
+int read_StudentDB(const char* fileName);
+int write_StudentDB (const char* fileName);
+void print_st(int max);
+void add_student(const char* fileName);
+void findByFirstName(const char* fileName);
 void totalCount();
-void deleteStudent();
+void deleteStudent(const char* fileName);
 void updateStudent();
 
 #endif // MYFUNCTIONS_H_INCLUDED

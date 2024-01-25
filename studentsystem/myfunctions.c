@@ -51,6 +51,8 @@ int read_StudentDB (const char* fileName)
             strcpy(st[j].mobile, buff);
         }
 
+        st[j].flag = 1;
+
         i++;
 
 
@@ -65,6 +67,37 @@ int read_StudentDB (const char* fileName)
     studentCount = j;
     fclose(file);
 
+
+}
+
+// Function to write to file
+int write_StudentDB (const char* fileName)
+{
+    char buff[128];
+
+    FILE* file = fopen(fileName, "w");
+    if (file == NULL)
+    {
+        printf("Error opening file.\n");
+        return;
+    }
+
+    int i;
+    for(i = 0; i < studentCount; i++)
+    {
+        if(st[i].flag == 1)
+        {
+            fprintf(file, "%s",st[i].firstName);
+            fprintf(file, "%s",st[i].lastName);
+            fprintf(file, "%s",st[i].address);
+            fprintf(file, "%s",st[i].dob);
+            fprintf(file, "%s",st[i].mobile);
+            fprintf(file, "\n");
+        }
+
+    }
+
+    fclose(file);
 
 }
 
@@ -160,44 +193,34 @@ void totalCount()
 // Function to delete a Student
 void deleteStudent(const char* fileName)
 {
+    printf("OK\n");
+    // Read student data from file
+    read_StudentDB(fileName);
+    print_st(studentCount);
+
     char temp[20];
-    printf("Enter name of student you want to delete from the system: \n");
+    char buff[20];
+    printf("Enter first name of student you would like to delete form the system: \n");
     scanf("%s", temp);
 
-    FILE* file = fopen(fileName, "r+");
-    if (file == NULL)
+    // Find & mark specified student as deleted
+    int j;
+    for(j = 0; j<studentCount; j++)
     {
-        printf("Error opening file.\n");
-        return;
+
+
+        strcpy(buff, st[j].firstName);
+        buff[strlen(buff) - 1] = 0;
+        if(strcmp(temp, buff)==0)
+        {
+            st[j].flag = 0; // marked for deletion
+            printf("student has been deleted from the system \n");
+        }
     }
 
-    struct studentInfo student;
+    // Write the updated data back file
+    write_StudentDB (fileName);
 
-    // Read the file line by line
-    while (fscanf(file, "%s %s %s %s %s", student.firstName, student.lastName, student.address, student.dob, student.mobile) == 5)
-        {
-        // Compare the first name
-        if (strcmp(student.firstName, temp) == 0)
-            {
-                for (int j = 0; j < count; j++)
-                    {
-                        if (temp == st[j].firstName)
-                            {
-                            for (int k = j; k < 499; k++)
-                                {
-                                    st[k] = st[k + 1];
-                                }
-                                count--;
-                            }
-
-                    }
-
-                fclose(file);
-                return;
-            }
-        }
-    printf("The student is removed from the system\n");
-    fclose(file);
 }
 
 // Function to update student information
