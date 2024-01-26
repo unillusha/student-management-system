@@ -188,9 +188,10 @@ void findByFirstName(const char* fileName)
 }
 
 // Function to print the total number of students
-void totalCount()
+void totalCount(const char* fileName)
 {
-   printf("The total number of students: %d\n", count);
+    int totalStudents = read_StudentDB(fileName);
+    printf("The total number of students: %d\n", totalStudents);
 }
 
 // Function to delete a Student

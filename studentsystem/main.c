@@ -39,7 +39,7 @@ int main() {
                 findByFirstName(DBFILE);
                 break;
             case 3:
-                totalCount();
+                totalCount(DBFILE);
                 break;
             case 4:
                 deleteStudent(DBFILE);
