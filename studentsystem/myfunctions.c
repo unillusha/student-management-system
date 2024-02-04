@@ -204,7 +204,7 @@ void deleteStudent(const char* fileName)
 
     char temp[MAX_NAME_SIZE];
     char buff[MAX_NAME_SIZE];
-    printf("Enter first name of student you would like to delete form the system: \n");
+    printf("Enter first name of student you would like to delete f the system: \n");
     scanf("%s", temp);
 
     // Find & mark specified student as deleted
@@ -228,46 +228,81 @@ void deleteStudent(const char* fileName)
 }
 
 // Function to update student information
-void updateStudent()
+void updateStudent(const char* fileName)
 {
-    int temp;
-    printf("Enter first name of student\n");
-    scanf("%s", &temp);
-    for (int j = 0; j < count; j++)
+    int i;
+    read_StudentDB(fileName);
+    print_st(studentCount);
+
+    char temp[MAX_NAME_SIZE];
+    char buff[MAX_NAME_SIZE];
+    printf("Enter first name of student you would like to update from the system: \n");
+    scanf("%s", temp);
+
+    // Read the file line by line
+    for (i = 0; i < studentCount; i++)
     {
-        if (temp == st[j].firstName)
+        // Compare the first name
+        strcpy(buff, st[i].firstName);
+        buff[strlen(buff) - 1] = 0;
+        printf("-> %s %s\n", buff, temp);
+
+        if(strcmp(temp, buff)==0)
         {
-         printf("1. First Name\n"
-                "2. Last Name\n"
-                "3. Address\n"
-                "4. Date of birth\n"
-                "5. Mobile number\n");
-         int c;
-         scanf("%d", &c);
-         switch(c) {
-            case 1:
-               printf("Enter the updated first name : ");
-               scanf("%s", st[j].firstName);
-               break;
-            case 2:
-               printf("Enter the updated last name : ");
-               scanf("%s", st[j].lastName);
-               break;
-            case 3:
-               printf("Enter the updated Address : ");
-               scanf("%s", st[j].address);
-               break;
-            case 4:
-               printf("Enter the updated Date of birth : ");
-               scanf("%s", st[j].dob);
-               break;
-            case 5:
-               printf("Enter the updated Mobile number: ");
-               scanf("%s", st[j].mobile);
-               break;
-            }
-            printf("Records updated successfully");
+            // Print the details of the student
+            printf("Student information: \n");
+            printf("1.First name: %s\n", st[i].firstName);
+            printf("2.Last name: %s\n", st[i].lastName);
+            printf("3.Address: %s\n", st[i].address);
+            printf("4.Date of birth: %s\n", st[i].dob);
+            printf("5.Mobile number: %s\n", st[i].mobile);
+
+            int c;
+            printf("Select the field to update (1-5): ");
+            scanf("%d", &c);
+
+            switch (c)
+            {
+                case 1:
+                    printf("Enter the updated first name : ");
+                    scanf("%s", st[i].firstName);
+                    strcat(st[i].firstName, "\n");
+                    break;
+                case 2:
+                    printf("Enter the updated last name : ");
+                    scanf("%s", st[i].lastName);
+                    strcat(st[i].lastName, "\n");
+                    break;
+                case 3:
+                    printf("Enter the updated Address : ");
+                    scanf("%s", st[i].address);
+                    strcat(st[i].address, "\n");
+                    break;
+                case 4:
+                    printf("Enter the updated Date of birth : ");
+                    scanf("%s", st[i].dob);
+                    strcat(st[i].dob, "\n");
+                    break;
+                case 5:
+                    printf("Enter the updated Mobile number: ");
+                    scanf("%s", st[i].mobile);
+                    strcat(st[i].mobile, "\n");
+                    break;
+                } /* end switch */
+
+                // Write the updated data back file
+                write_StudentDB (fileName);
+                break;
+
+            } /* end if */
+
+
+        } /* end for */
+
+        printf("-> %d %d\n", i, studentCount);
+        if(i == studentCount)
+        {
+            printf("No student found with the given first name.\n");
         }
 
-    }
 }

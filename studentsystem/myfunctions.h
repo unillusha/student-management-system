@@ -24,8 +24,8 @@ int write_StudentDB (const char* fileName);
 void print_st(int max);
 void add_student(const char* fileName);
 void findByFirstName(const char* fileName);
-void totalCount();
+void totalCount(const char* fileName);
 void deleteStudent(const char* fileName);
-void updateStudent();
+void updateStudent(const char* fileName);
 
 #endif // MYFUNCTIONS_H_INCLUDED

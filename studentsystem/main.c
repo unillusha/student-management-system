@@ -45,7 +45,7 @@ int main() {
                 deleteStudent(DBFILE);
                 break;
             case 5:
-                updateStudent();
+                updateStudent(DBFILE);
                 break;
             case 6:
                 exit(0);
