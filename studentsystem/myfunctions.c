@@ -245,8 +245,6 @@ void updateStudent(const char* fileName)
         // Compare the first name
         strcpy(buff, st[i].firstName);
         buff[strlen(buff) - 1] = 0;
-        printf("-> %s %s\n", buff, temp);
-
         if(strcmp(temp, buff)==0)
         {
             // Print the details of the student
@@ -299,7 +297,6 @@ void updateStudent(const char* fileName)
 
         } /* end for */
 
-        printf("-> %d %d\n", i, studentCount);
         if(i == studentCount)
         {
             printf("No student found with the given first name.\n");
